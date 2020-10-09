@@ -9,10 +9,10 @@ body{
 
 
 [class*='square']{
-    height: 2em;
-    width: 2em;
     position: absolute;
-    background-color: red;
-    border-radius: 50%;
-   
+    border-radius: 50%;   
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
 }
