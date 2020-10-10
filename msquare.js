@@ -26,20 +26,25 @@ class Circle {
     follow(div) {
         div.addEventListener('mouseover', (e) => {
             this.stick(e.target);
-            cumulSize = this.divHtml.offsetWidth;
             if (this.currenttouch === 0) {
-                this.ballNumber = totalBalls + 1;
+                cumulSize.push(this.divHtml.offsetHeight);
+                this.ballNumber = totalBalls;
                 totalBalls += 1;
             }
             e.target.innerHTML = this.ballNumber;
             this.currenttouch += 1;
-           
+
         })
     }
 
     stick(rond) {
-        window.addEventListener('mousemove', (e) => {            
-            rond.style.top = (e.clientY+(cumulSize*this.ballNumber)) + 'px';
+        window.addEventListener('mousemove', (e) => {
+            let tempSize = cumulSize.slice(0, this.ballNumber);
+            let fullsize = 0;
+            if (tempSize.length > 0) {
+                fullsize = tempSize.reduce((a, b) => a + b);
+            }            
+            rond.style.top = (e.clientY + fullsize) + 'px';
             rond.style.left = (e.clientX) + 'px';
         })
     }
@@ -59,7 +64,7 @@ class Circle {
 
 
 
-let cumulSize = 0;
+let cumulSize = [];
 let totalBalls = 0;
 let randomColor = [];
 
@@ -71,7 +76,7 @@ for (let index = 0; index < 15; index++) {
     for (let i = 0; i < 3; i++) {
         randomColor.push((Math.floor(Math.random() * 254) + 1));
     }
-    let randomSize = 3;
+    let randomSize = (Math.floor(Math.random() * 5) + 1);
     let randomX = (Math.floor(Math.random() * 500) + 1);
     let randomY = (Math.floor(Math.random() * 500) + 1);
     let circle = new Circle(randomX, randomY, `rgb(${randomColor[0]},${randomColor[1]},${randomColor[2]})`, index, randomSize);
