@@ -6,7 +6,6 @@ class Circle {
         this.num = num;
         this.divHtml = '';
         this.size = size;
-        this.stop = false;
         this.currenttouch = 0;
         this.ballNumber = 0;
     }
@@ -40,7 +39,7 @@ class Circle {
     stick(rond) {
         window.addEventListener('mousemove', (e) => {
             let tempSize = cumulSize.slice(0, this.ballNumber);
-            let fullsize = 0;         
+            let fullsize = 0;
             if (tempSize.length > 0) {
                 fullsize = tempSize.reduce((a, b) => a + b);
                 rond.style.top = window.getComputedStyle(queue[this.ballNumber - 1].divHtml).top;
@@ -54,8 +53,7 @@ class Circle {
 
     reset(div) {
         window.addEventListener('click', () => {
-            this.plop(div)
-            this.stop = false;
+            this.plop(div);
         })
     }
 
@@ -69,25 +67,41 @@ class Circle {
 let queue = [];
 let cumulSize = [];
 let totalBalls = 0;
-let randomColor = [];
+let randomColor = 0;
+let startBtn = document.querySelector('button');
+let menuBar = document.querySelector('.menu');
 
-for (let index = 0; index < 15; index++) {
-    for (let i = 0; i < 3; i++) {
-        randomColor.push((Math.floor(Math.random() * 254) + 1));
+startBtn.addEventListener('click', () => {
+    snake();
+})
+
+
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        snake();
     }
-    let randomSize = (Math.floor(Math.random() * 5) + 1);
-    let randomX = (Math.floor(Math.random() * 500) + 1);
-    let randomY = (Math.floor(Math.random() * 500) + 1);
-    let circle = new Circle(randomX, randomY, `rgb(${randomColor[0]},${randomColor[1]},${randomColor[2]})`, index, randomSize);
-    circle.create();
-    circle.follow(circle.divHtml);
-    circle.reset(circle.divHtml);
-    randomColor = [];
+})
+
+
+function snake() {
+    let ballNum = document.querySelector('#ball-num');
+    if (isNaN(parseInt(ballNum.value))){
+        ballNum.style.backgroundColor = 'red';
+    } else {
+        ballNum.style.backgroundColor = '';        
+        for (let index = 0; index < parseInt(ballNum.value); index++) {
+            randomColor = Math.floor(Math.random() * 220) + 1;
+            let randomSize = (Math.floor(Math.random() * 4) + 1);
+            let randomX = (Math.floor(Math.random() * (window.innerWidth - menuBar.offsetHeight - 100)) + 1);
+            let randomY = (Math.floor(Math.random() * (window.innerHeight - menuBar.offsetHeight - 100)) + 1);
+            let circle = new Circle(randomX, randomY, `rgb(${randomColor},${randomColor},${randomColor})`, index, randomSize);
+            circle.create();
+            circle.follow(circle.divHtml);
+            circle.reset(circle.divHtml);
+            randomColor = [];
+        }
+        ballNum.value = '';
+    }
+    
+
 }
-
-
-
-
-
-
-
