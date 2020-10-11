@@ -1,9 +1,9 @@
-import {Bloc} from './object.js'
+import { Bloc } from './object.js'
+import { squareInfo } from './square.js'
 
-
-export class Circle extends Bloc{
+class Circle extends Bloc {
     constructor(x, y, color, num, size) {
-        super(x,y,color,num,size);
+        super(x, y, color, num, size);
         this.currenttouch = 0;
         this.ballNumber = 0;
     }
@@ -24,6 +24,7 @@ export class Circle extends Bloc{
 
     stick(rond) {
         window.addEventListener('mousemove', (e) => {
+            this.collision(this.divHtml, squareInfo);
             let tempSize = cumulSize.slice(0, this.ballNumber);
             let fullsize = 0;
             if (tempSize.length > 0) {
@@ -35,6 +36,33 @@ export class Circle extends Bloc{
                 rond.style.left = (e.clientX) + 'px';
             }
         })
+    }
+
+    collision(rond, carreInfo) {
+        let rondBottom = 0,
+            rondRight = 0,
+            carreBottom = 0,
+            carreRight = 0,
+            result = true;
+
+        carreInfo.map((carre, i) => {
+            let carreDiv = carreInfo[i].divHtml;
+            rondBottom = rond.offsetTop + rond.offsetHeight;
+            rondRight = rond.offsetLeft + rond.offsetWidth;
+            carreBottom = carreDiv.offsetTop + carreDiv.offsetHeight;
+            carreRight = carreDiv.offsetLeft + carreDiv.offsetWidth;
+
+            result = ((rondBottom < carreDiv.offsetTop) ||
+                (rond.offsetTop > carreBottom) ||
+                (rondRight < carreDiv.offsetLeft) ||
+                (rond.offsetLeft > carreRight));
+
+            if(!result){
+                mistake +=1;
+            }
+        })
+
+
     }
 
     reset(div) {
@@ -53,3 +81,7 @@ export class Circle extends Bloc{
 let queue = [];
 let cumulSize = [];
 let totalBalls = 0;
+let mistake = 0;
+
+
+export {Circle,mistake}

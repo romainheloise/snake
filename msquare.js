@@ -1,4 +1,4 @@
-import { Circle } from './circle.js'
+import { Circle,mistake } from './circle.js'
 import { Square } from './square.js'
 
 
@@ -9,6 +9,13 @@ function snake() {
         ballNum.style.backgroundColor = 'red';
     } else {
         ballNum.style.backgroundColor = '';
+        for (let index = 0; index < 2; index++) {
+            let randomX = (Math.floor(Math.random() * ((window.innerWidth - 50) + 1)));
+            let randomY = (Math.floor(Math.random() * ((window.innerHeight - 50) - menuBar.offsetHeight + 1)) + menuBar.offsetHeight);
+            let square = new Square(randomX, randomY, `orange`, index, 2.5);
+            square.create();   
+            square.info();          
+        }
         for (let index = 0; index < parseInt(ballNum.value); index++) {
             randomColor = Math.floor(Math.random() * 220) + 1;
             let randomSize = (Math.floor(Math.random() * 4) + 1);
@@ -19,15 +26,7 @@ function snake() {
             circle.follow(circle.divHtml);
             circle.reset(circle.divHtml);
             randomColor = [];
-        }
-
-        for (let index = 0; index < 5; index++) {
-            let randomX = (Math.floor(Math.random() * ((window.innerWidth - 50) + 1)));
-            let randomY = (Math.floor(Math.random() * ((window.innerHeight - 50) - menuBar.offsetHeight + 1)) + menuBar.offsetHeight);
-            let square = new Square(randomX, randomY, `red`, index, 2.5);
-            square.create();
-        }
-
+        }        
         ballNum.value = '';
     }
 }
@@ -39,8 +38,10 @@ let menuBar = document.querySelector('.menu');
 
 
 
+
+
 startBtn.addEventListener('click', () => {
-    snake();
+    snake();    
 })
 
 window.addEventListener('keydown', (e) => {
