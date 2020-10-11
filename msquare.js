@@ -31,7 +31,7 @@ class Circle {
                 this.ballNumber = totalBalls;
                 totalBalls += 1;
             }
-            e.target.innerHTML = this.ballNumber;
+            e.target.innerHTML = this.ballNumber + 1;
             this.currenttouch += 1;
         })
     }
@@ -85,15 +85,15 @@ window.addEventListener('keydown', (e) => {
 
 function snake() {
     let ballNum = document.querySelector('#ball-num');
-    if (isNaN(parseInt(ballNum.value))){
+    if (isNaN(parseInt(ballNum.value))) {
         ballNum.style.backgroundColor = 'red';
     } else {
-        ballNum.style.backgroundColor = '';        
+        ballNum.style.backgroundColor = '';
         for (let index = 0; index < parseInt(ballNum.value); index++) {
             randomColor = Math.floor(Math.random() * 220) + 1;
             let randomSize = (Math.floor(Math.random() * 4) + 1);
-            let randomX = (Math.floor(Math.random() * (window.innerWidth - menuBar.offsetHeight - 100)) + 1);
-            let randomY = (Math.floor(Math.random() * (window.innerHeight - menuBar.offsetHeight - 100)) + 1);
+            let randomX = (Math.floor(Math.random() * ((window.innerWidth - 50) + 1)));
+            let randomY = (Math.floor(Math.random() * ((window.innerHeight - 50) - menuBar.offsetHeight + 1)) + menuBar.offsetHeight);
             let circle = new Circle(randomX, randomY, `rgb(${randomColor},${randomColor},${randomColor})`, index, randomSize);
             circle.create();
             circle.follow(circle.divHtml);
@@ -102,6 +102,4 @@ function snake() {
         }
         ballNum.value = '';
     }
-    
-
 }

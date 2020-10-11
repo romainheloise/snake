@@ -46,7 +46,7 @@ html {
     border-radius: 15px;
     border:none;
     background-color: rgb(204, 204, 204);    
-    transition: 0.2s ease-in-out;
+    transition: 0.1s ease-in-out;    
 }
 
 button {
@@ -76,3 +76,5 @@ button:active{
 #ball-num:focus{
     outline: 0;
 }
+
+
