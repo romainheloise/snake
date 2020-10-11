@@ -8,8 +8,10 @@ function snake() {
     if (isNaN(parseInt(ballNum.value))) {
         ballNum.style.backgroundColor = 'red';
     } else {
+
         ballNum.style.backgroundColor = '';
         nombreDeBalles = parseInt(ballNum.value);
+
         setInterval(() => {
             let randomX = (Math.floor(Math.random() * ((window.innerWidth - 50) + 1)));
             let randomY = (Math.floor(Math.random() * ((window.innerHeight - 50) - menuBar.offsetHeight + 1)) + menuBar.offsetHeight);
@@ -28,7 +30,8 @@ function snake() {
             circle.follow(circle.divHtml);
             circle.reset(circle.divHtml);
             randomColor = [];
-        }        
+        }   
+             
         ballNum.value = '';
     }
 }

@@ -96,6 +96,24 @@ button:active{
     animation: pop 1s;
 }
 
+.loose {
+    animation: shake 1s infinite;
+}
+
+
+@keyframes shake {
+    0%{
+        transform: rotate(-2deg);
+    }
+    75%{
+        transform: scale(1.3);
+    }
+    100%{
+        transform: rotate(2deg) scale(1);
+    }
+}
+
+
 
 @keyframes pop {
     0%{
