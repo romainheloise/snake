@@ -1,4 +1,4 @@
-import { Circle,returnResult } from './circle.js'
+import { Circle } from './circle.js'
 import { Square } from './square.js'
 
 
@@ -16,9 +16,9 @@ function snake() {
             let randomX = (Math.floor(Math.random() * ((window.innerWidth - 50) + 1)));
             let randomY = (Math.floor(Math.random() * ((window.innerHeight - 50) - menuBar.offsetHeight + 1)) + menuBar.offsetHeight);
             let square = new Square(randomX, randomY, `orange`, 0, 2.5);
-            square.create();   
-            square.info();   
-        },5000);
+            square.create();
+            square.info();
+        }, 5000);
 
         for (let index = 0; index < parseInt(ballNum.value); index++) {
             randomColor = Math.floor(Math.random() * 220) + 1;
@@ -30,8 +30,8 @@ function snake() {
             circle.follow(circle.divHtml);
             circle.reset(circle.divHtml);
             randomColor = [];
-        }   
-             
+        }
+
         ballNum.value = '';
     }
 }
@@ -46,7 +46,7 @@ export let nombreDeBalles = 0;
 
 
 startBtn.addEventListener('click', () => {
-    snake();    
+    snake();
 })
 
 window.addEventListener('keydown', (e) => {

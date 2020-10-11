@@ -93,4 +93,4 @@ let cumulSize = [];
 let totalBalls = 0;
 let returnResult = document.querySelector('.result-text');
 
-export { Circle, returnResult }
+export { Circle }
