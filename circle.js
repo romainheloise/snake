@@ -58,7 +58,7 @@ class Circle extends Bloc {
                 (rond.offsetLeft > carreRight));
 
             if(!result){
-                mistake +=1;
+                returnResult.innerHTML = 'You Loose';
             }
         })
 
@@ -81,7 +81,6 @@ class Circle extends Bloc {
 let queue = [];
 let cumulSize = [];
 let totalBalls = 0;
-let mistake = 0;
+let returnResult = document.querySelector('.result');
 
-
-export {Circle,mistake}
+export{Circle,returnResult}

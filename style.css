@@ -38,6 +38,9 @@ html {
     top: 0;
     left: 0;
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 
@@ -85,4 +88,9 @@ button:active{
     display: flex;
     justify-content: center;
     align-items: center;        
+}
+
+.result{
+    margin-left: 1em;
+    color: red;
 }
